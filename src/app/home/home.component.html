@@ -1,0 +1,137 @@
+<header class="jumbotron">
+  <div class="container">
+    <div class="row row-header">
+      <div class="col-12 col-sm-12">
+        <h1>My Stock Market</h1>
+        <p>We collect real-time stock prices data, and create a unique stock buying and selling experience</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row row-content">
+      <div class="col-12 col-sm-12">
+          <h2>Stocks</h2>
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                      <tr>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Profit/Loss</th>
+                          <th>Actions (Buy/Sell)</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th>Google</th>
+                          <td>$1500</td>
+                          <td>+3%</td>
+                          <td>
+                            <a role="button" (click)="buyStockModal();">
+                              <i class="fa fa-shopping-cart action-icon"></i>
+                            </a>
+                            <i class="fa fa-money action-icon"></i>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>Apple</th>
+                          <td>$200</td>
+                          <td>+10%</td>
+                          <td>
+                            <a role="button" (click)="buyStockModal();">
+                              <i class="fa fa-shopping-cart action-icon"></i>
+                            </a>
+                            <i class="fa fa-money action-icon"></i>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>Microsoft</th>
+                          <td>$150</td>
+                          <td>+13%</td>
+                          <td>
+                            <a role="button" (click)="buyStockModal();">
+                              <i class="fa fa-shopping-cart action-icon"></i>
+                            </a>
+                            <i class="fa fa-money action-icon"></i>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 col-sm-6">
+        <h5>Our Address</h5>
+        <address>
+          C-6/286, Yamuna Vihar<br>
+          Delhi<br>
+          INDIA<br>
+          <i class="fa fa-phone fa-lg"></i>: +91-9560685010<br>
+          <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:himani13040@iiitd.ac.in">himani13040@iiitd.ac.in</a>
+        </address>
+      </div>
+      <div class="col-12 col-sm-5 align-self-center">
+        <div class="text-center">
+          <a class="btn btn-social-icon btn-github margin-5" href="https://github.com/Himani13040" target="_blank">
+            <i class="fa fa-github fa-lg"></i></a>
+          <a class="btn btn-social-icon btn-linkedin margin-5" href="https://www.linkedin.com/in/himani-mahto-58b21987/" target="_blank">
+            <i class="fa fa-linkedin fa-lg"></i></a>
+          <a class="btn btn-social-icon btn-instagram margin-5" href="https://www.instagram.com/himani_mahto/" target="_blank">
+            <i class="fa fa-instagram fa-lg"></i></a>
+          <a class="btn btn-social-icon margin-5" href="mailto:himani13040@iiitd.ac.in">
+            <i class="fa fa-envelope-o fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <p>© Copyright 2019 My Stock App</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="stockBuyModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" role="content">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Buy this Stock</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-sm-4">
+              <label class="sr-only" for="noOfStockUnits">No. Of Stock Units</label>
+              <input type="number" class="form-control form-control-sm mr-1" name="noOfStockUnits" [(ngModel)]="buyStock.noOfStockUnits"
+                placeholder="Enter Number of Stock">
+            </div>
+            <div class="form-group col-sm-4">
+              <label class="sr-only" for="totalAmount">Total Amount</label>
+              <input type="number" class="form-control form-control-sm mr-1" name="totalAmount" [(ngModel)]="buyStock.totalAmount" [disabled]="true"
+                placeholder="Total Amount">
+            </div>
+            <div class="form-group col-sm-4">
+                <label class="sr-only" for="remainingBalance"> Remaining Balance</label>  
+                <input class="form-control form-control-sm mr-1" type="number" name="remainingBalance" [(ngModel)]="buyStock.remainingBalance" [disabled]="true"
+                  placeholder="Remaining Balance">
+            </div>
+          </div>
+          <div class="form-row">
+            <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm ml-1">Buy</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

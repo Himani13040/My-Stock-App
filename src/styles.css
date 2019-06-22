@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+.row-header {
+    margin: 0px auto;
+    padding: 0px 0px; }
+  
+.row-content {
+margin: 0px auto;
+padding: 30px 0px;
+border-bottom: 1px ridge;
+min-height: 250px; }
+
+.footer {
+background-color: #D1C4E9;
+margin: 0px auto;
+padding: 20px 0px; }
+
+.jumbotron {
+margin: 0px auto !important;
+padding: 70px 30px !important;
+background: #9575CD !important;
+color: floralwhite !important; }
+
+body {
+padding: 50px 0px 0px 0px;
+z-index: 0; }
+
+.navbar-dark {
+background-color: #512DA8; }
+
+.modal .modal-header {
+background-color: #512DA8;
+color: floralwhite; }
+.modal .modal-header .close {
+    color: floralwhite; }
+
+.modal .modal-body {
+background-color: #D1C4E9; }
+
+.flex-display {
+    display: flex!important;
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.action-icon {
+    margin: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
