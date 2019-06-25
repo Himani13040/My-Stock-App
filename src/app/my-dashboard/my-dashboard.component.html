@@ -1,54 +1,64 @@
 <div class="container">
   <div class="row balance">
       <div class="col-12 col-sm-12">
-        <h5>Current Balance: <span style="color: #512DA8">$1000</span></h5>
+        <h5>Current Balance: 
+          <span style="color: #512DA8" *ngIf="myBalance">{{myBalance}}</span>
+          <span style="color: red" *ngIf="!myBalance">0</span>
+        </h5>
       </div>
   </div>
   <div class="row balance">
       <div class="col-4 col-sm-4">
-        <h5>Add Balance: <input type="number" placeholder="Add Balance" [(ngModel)]="addBalAmount.amount"></h5>
+        <h5>Add Balance: <input type="number" placeholder="Enter Amount" [(ngModel)]="addBalAmount.amount"></h5>
       </div>
       <div class="col-4 col-sm-4">
-        <button class="btn btn-primary" type="submit" (click)="addBalance();">ADD</button>
+        <button class="btn btn-primary" type="submit" (click)="addBalance();" [disabled]="!addBalAmount.amount">ADD</button>
       </div>
   </div>
-  <div class="row row-content">
+  <div class="row row-content" *ngIf="showCurrentStockTable">
       <div class="col-12 col-sm-12">
-          <h5>Stocks</h5>
+          <h5>Active Stocks</h5>
           <div class="table-responsive">
               <table class="table table-striped">
                   <thead class="thead-dark">
                       <tr>
                           <th>Name</th>
-                          <th>Total Units</th>
-                          <th>Profit/Loss</th>
+                          <th>Quantity</th>
                           <th>Sell</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                          <th>Google</th>
-                          <td>10</td>
-                          <td>+3%</td>
+                      <tr *ngFor="let stock of aggregatedDashboardData; let i = index">
+                          <th>{{stock.name}}</th>
+                          <td>{{stock.quantity}}</td>
                           <td>
-                            <i class="fa fa-money action-icon" (click)="sellStockModal()"></i>
+                            <i class="fa fa-money action-icon" (click)="sellStockModal(i)"></i>
                           </td>
                       </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  <div class="row row-content" *ngIf="showStockHistTable">
+      <div class="col-12 col-sm-12">
+          <h5>Purchase History</h5>
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
                       <tr>
-                          <th>Apple</th>
-                          <td>2</td>
-                          <td>+10%</td>
-                          <td>
-                            <i class="fa fa-money action-icon" (click)="sellStockModal()"></i>
-                          </td>
+                          <th>Name</th>
+                          <th>Bought On</th>
+                          <th>Bought At Price</th>
+                          <th>Quantity</th>
                       </tr>
-                      <tr>
-                          <th>Microsoft</th>
-                          <td>1</td>
-                          <td>+13%</td>
-                          <td>
-                            <i class="fa fa-money action-icon" (click)="sellStockModal()"></i>
-                          </td>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let stock of dashboardDataToDisplay; let i = index">
+                          <th>{{stock.name}}</th>
+                          <td>{{stock.createdAt | date}}</td>
+                          <td>{{stock.boughtAtPrice}}</td>
+                          <td>{{stock.quantity}}</td>
                       </tr>
                   </tbody>
               </table>

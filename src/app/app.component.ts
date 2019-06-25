@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { CookieService } from 'ngx-cookie-service';
 
 declare var $: any;
 @Component({
@@ -25,8 +26,11 @@ export class AppComponent {
   loginRes;
   token = null;
   loggedIn;
-  constructor(private apiService: ApiService) {
-    console.log(this.token);
+  constructor(private apiService: ApiService, private cookieService: CookieService) {
+    const cookieValue = this.cookieService.get('token');
+    if (cookieValue) {
+      this.loggedIn = true;
+    }
   }
   showLoginModal() {
     $('#loginModal').modal('show');
@@ -36,8 +40,11 @@ export class AppComponent {
   }
   registerUser() {
     this.apiService.addUser(this.signUpDetails).subscribe(
-      data => { this.registerRes = data;
-                this.token = this.registerRes.data.token;
+      data => {
+        this.registerRes = data;
+        this.token = this.registerRes.data.token;
+        this.cookieService.set('token', this.token);
+        this.loggedIn = true;
       },
       err => {
         console.error(err.error.error);
@@ -52,18 +59,22 @@ export class AppComponent {
         $('#registerModal').modal('hide');
         Swal.fire({
           type: 'success',
-          title: 'You have registered successfully',
+          title: 'You have registered successfully!',
           showConfirmButton: false,
           timer: 1500
+        }).then(() => {
+          window.location.reload();
         });
       }
     );
   }
   loginUser() {
     this.apiService.login(this.loginDetails).subscribe(
-      data => { this.loginRes = data;
-                this.token = this.loginRes.data.token;
-                this.loggedIn = true;
+      data => {
+        this.loginRes = data;
+        this.token = this.loginRes.data.token;
+        this.cookieService.set('token', this.token);
+        this.loggedIn = true;
       },
       err => {
         console.error(err.error.error);
@@ -81,6 +92,8 @@ export class AppComponent {
           title: 'You have logged in successfully',
           showConfirmButton: false,
           timer: 1500
+        }).then(() => {
+          window.location.reload();
         });
       }
     );

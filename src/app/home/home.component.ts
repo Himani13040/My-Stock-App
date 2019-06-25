@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   }
   buyStockModal() {
     $('#stockBuyModal').modal('show');
+    this.buyStockObj.name = this.searchRes.name;
   }
   buyStock() {
     this.apiService.buyStock(this.buyStockObj).subscribe(
@@ -34,12 +35,20 @@ export class HomeComponent implements OnInit {
         Swal.fire({
           type: 'error',
           title: 'Oops...',
-          text: 'Unauthorized! Please sign in',
+          text: err.error.error.message,
         });
         $('#stockBuyModal').modal('hide');
       },
       () => {
         console.log('Bought successfully');
+        Swal.fire({
+          type: 'success',
+          title: 'Bought successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.buyStockObj.name = null;
+        this.buyStockObj.quantity = null;
         $('#stockBuyModal').modal('hide');
       }
     );
