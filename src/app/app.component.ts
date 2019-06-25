@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
+
 declare var $: any;
 @Component({
   selector: 'app-root',
@@ -13,10 +17,72 @@ export class AppComponent {
     phone: null,
     password: null
   };
+  loginDetails = {
+    email: null,
+    password: null
+  };
+  registerRes;
+  loginRes;
+  token = null;
+  loggedIn;
+  constructor(private apiService: ApiService) {
+    console.log(this.token);
+  }
   showLoginModal() {
     $('#loginModal').modal('show');
   }
   showRegisterModal() {
     $('#registerModal').modal('show');
+  }
+  registerUser() {
+    this.apiService.addUser(this.signUpDetails).subscribe(
+      data => { this.registerRes = data;
+                this.token = this.registerRes.data.token;
+      },
+      err => {
+        console.error(err.error.error);
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: err.error.error.message,
+        });
+      },
+      () => {
+        console.log('successfully registered');
+        $('#registerModal').modal('hide');
+        Swal.fire({
+          type: 'success',
+          title: 'You have registered successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    );
+  }
+  loginUser() {
+    this.apiService.login(this.loginDetails).subscribe(
+      data => { this.loginRes = data;
+                this.token = this.loginRes.data.token;
+                this.loggedIn = true;
+      },
+      err => {
+        console.error(err.error.error);
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: err.error.error.message,
+        });
+      },
+      () => {
+        console.log('successfully logged in', this.token);
+        $('#loginModal').modal('hide');
+        Swal.fire({
+          type: 'success',
+          title: 'You have logged in successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    );
   }
 }

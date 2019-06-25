@@ -1,7 +1,20 @@
 <div class="container">
+  <div class="row balance">
+      <div class="col-12 col-sm-12">
+        <h5>Current Balance: <span style="color: #512DA8">$1000</span></h5>
+      </div>
+  </div>
+  <div class="row balance">
+      <div class="col-4 col-sm-4">
+        <h5>Add Balance: <input type="number" placeholder="Add Balance" [(ngModel)]="addBalAmount.amount"></h5>
+      </div>
+      <div class="col-4 col-sm-4">
+        <button class="btn btn-primary" type="submit" (click)="addBalance();">ADD</button>
+      </div>
+  </div>
   <div class="row row-content">
       <div class="col-12 col-sm-12">
-          <h3>{{name}}'s Stocks</h3>
+          <h5>Stocks</h5>
           <div class="table-responsive">
               <table class="table table-striped">
                   <thead class="thead-dark">
@@ -9,7 +22,7 @@
                           <th>Name</th>
                           <th>Total Units</th>
                           <th>Profit/Loss</th>
-                          <th>Actions (Buy/Sell)</th>
+                          <th>Sell</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -18,10 +31,7 @@
                           <td>10</td>
                           <td>+3%</td>
                           <td>
-                            <a role="button">
-                              <i class="fa fa-shopping-cart action-icon"></i>
-                            </a>
-                            <i class="fa fa-money action-icon"></i>
+                            <i class="fa fa-money action-icon" (click)="sellStockModal()"></i>
                           </td>
                       </tr>
                       <tr>
@@ -29,10 +39,7 @@
                           <td>2</td>
                           <td>+10%</td>
                           <td>
-                            <a role="button">
-                              <i class="fa fa-shopping-cart action-icon"></i>
-                            </a>
-                            <i class="fa fa-money action-icon"></i>
+                            <i class="fa fa-money action-icon" (click)="sellStockModal()"></i>
                           </td>
                       </tr>
                       <tr>
@@ -40,10 +47,7 @@
                           <td>1</td>
                           <td>+13%</td>
                           <td>
-                            <a role="button">
-                              <i class="fa fa-shopping-cart action-icon"></i>
-                            </a>
-                            <i class="fa fa-money action-icon"></i>
+                            <i class="fa fa-money action-icon" (click)="sellStockModal()"></i>
                           </td>
                       </tr>
                   </tbody>
@@ -52,3 +56,31 @@
       </div>
   </div>
 </div>
+
+<div id="stockSellModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="content">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sell this Stock</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-row">
+              <div class="form-group col-sm-4">
+                <label class="sr-only" for="noOfStockUnits">No. Of Stock Units</label>
+                <input type="number" class="form-control form-control-sm mr-1" name="noOfStockUnits" [(ngModel)]="sellStockObj.quantity"
+                  placeholder="Enter Number of Stock">
+              </div>
+            </div>
+            <div class="form-row">
+              <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm ml-1" (click)="sellStock()" [disabled]="!sellStockObj.quantity">Sell</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

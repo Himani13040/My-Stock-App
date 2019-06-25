@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

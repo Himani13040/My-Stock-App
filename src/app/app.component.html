@@ -6,12 +6,12 @@
         <li class="nav-item"><a class="nav-link" [routerLink]="['/my-dashboard']" routerLinkActive="router-link-active"><span class="fa fa-list fa-lg"></span> My Dashboard</a>
         </li>
       </ul>
-      <span class="navbar-text pointer-cursor" style="padding-right: 15px;">
+      <span class="navbar-text pointer-cursor" style="padding-right: 15px;" *ngIf="!loggedIn">
         <a role="button" id="registerModalButton" (click)="showRegisterModal();">
           <span class="fa fa-user-plus"></span> Register
         </a>
       </span>
-      <span class="navbar-text pointer-cursor">
+      <span class="navbar-text pointer-cursor" *ngIf="!loggedIn">
         <a role="button" id="loginModalButton" (click)="showLoginModal();">
           <span class="fa fa-sign-in"></span> Login
         </a>
@@ -33,12 +33,12 @@
           <div class="form-row">
             <div class="form-group col-sm-4">
               <label class="sr-only" for="exampleInputEmail3">Email address</label>
-              <input type="email" class="form-control form-control-sm mr-1" id="exampleInputEmail3"
+              <input type="email" class="form-control form-control-sm mr-1" id="exampleInputEmail3" [(ngModel)]="loginDetails.email" name="email"
                 placeholder="Enter email">
             </div>
             <div class="form-group col-sm-4">
               <label class="sr-only" for="exampleInputPassword3">Password</label>
-              <input type="password" class="form-control form-control-sm mr-1" id="exampleInputPassword3"
+              <input type="password" class="form-control form-control-sm mr-1" id="exampleInputPassword3" [(ngModel)]="loginDetails.password" name="password"
                 placeholder="Password">
             </div>
             <div class="col-sm-auto">
@@ -51,7 +51,7 @@
           </div>
           <div class="form-row">
             <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary btn-sm ml-1">Sign in</button>
+            <button type="submit" class="btn btn-primary btn-sm ml-1" (click)="loginUser()" [disabled]="!loginDetails.email || !loginDetails.password">Sign in</button>
           </div>
         </form>
       </div>
@@ -96,7 +96,7 @@
           <div class="form-group row">
             <div class="offset-md-4 col-md-8">
               <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" [disabled]="!signUpDetails.name || !signUpDetails.email || !signUpDetails.password">Sign Up</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!signUpDetails.name || !signUpDetails.email || !signUpDetails.password" (click)="registerUser()">Sign Up</button>
             </div>
           </div>
         </form>
