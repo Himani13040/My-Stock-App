@@ -22,7 +22,8 @@ color: floralwhite !important; }
 
 body {
 padding: 50px 0px 0px 0px;
-z-index: 0; }
+z-index: 0; 
+font-family: 'Bitter', sans-serif !important;}
 
 .navbar-dark {
 background-color: #512DA8; }
@@ -50,3 +51,6 @@ background-color: #D1C4E9; }
     font-size: 20px;
 }
 
+input:focus {
+    outline:none;
+ }

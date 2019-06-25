@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
         Swal.fire({
           type: 'error',
           title: 'Oops...',
-          text: err.error.error.message,
+          text: 'Unauthorized! Please log in.',
         });
         $('#stockBuyModal').modal('hide');
       },

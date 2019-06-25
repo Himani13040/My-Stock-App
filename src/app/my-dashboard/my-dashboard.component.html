@@ -8,14 +8,14 @@
       </div>
   </div>
   <div class="row balance">
-      <div class="col-4 col-sm-4">
-        <h5>Add Balance: <input type="number" placeholder="Enter Amount" [(ngModel)]="addBalAmount.amount"></h5>
+      <div class="col-5 col-sm-5" style="padding-right: 0px;">
+        <h5>Add Balance: <input type="number" placeholder="Enter Amount" [(ngModel)]="addBalAmount.amount" style="border-radius: 10px; border: 1.2px solid #ccc; padding-left: 10px;"></h5>
       </div>
-      <div class="col-4 col-sm-4">
-        <button class="btn btn-primary" type="submit" (click)="addBalance();" [disabled]="!addBalAmount.amount">ADD</button>
+      <div class="col-4 col-sm-4" style="padding-left: 0px; top: -2px;">
+        <button class="btn btn-primary btn-sm" type="submit" (click)="addBalance();" [disabled]="!addBalAmount.amount">ADD</button>
       </div>
   </div>
-  <div class="row row-content" *ngIf="showCurrentStockTable">
+  <div class="row row-content" *ngIf="showCurrentStockTable" style="min-height: 150px !important">
       <div class="col-12 col-sm-12">
           <h5>Active Stocks</h5>
           <div class="table-responsive">
@@ -40,7 +40,7 @@
           </div>
       </div>
   </div>
-  <div class="row row-content" *ngIf="showStockHistTable">
+  <div class="row row-content" *ngIf="showStockHistTable" style="min-height: 150px !important">
       <div class="col-12 col-sm-12">
           <h5>Purchase History</h5>
           <div class="table-responsive">

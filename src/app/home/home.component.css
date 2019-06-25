@@ -2,10 +2,6 @@
     margin: 5px;
 }
 
-input:focus {
-   outline:none;
-}
-
 .search-bar {
     width: 600px;
     border: 1.2px solid #ccc;
