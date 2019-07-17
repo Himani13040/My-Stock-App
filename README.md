@@ -1,6 +1,7 @@
 # MyStockApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Here's the link to the hosted application: http://134.209.158.128/home
 
 ## Development server
 
